@@ -75,7 +75,7 @@ class Gcc49mojave < Formula
     end
     if DevelopmentTools.clang_build_version >= 1000
       patch do
-        url "file:///Users/renxifeng/gcc_49_mojave_fix3.patch"
+        url "https://raw.githubusercontent.com/sofair/gcc49mojave_brew/master/gcc_49_mojave_fix3.patch"
         sha256 "ab297141f9d4387935c2e3bb7519fac83133efdb6b81216e8764cbe406655a5a"
       end
     end
