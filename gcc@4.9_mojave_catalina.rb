@@ -1,4 +1,4 @@
-class Gcc49mojave < Formula
+class GccAT49MojaveCatalina < Formula
   def osmajor
     `uname -r`.chomp
   end
@@ -17,7 +17,7 @@ class Gcc49mojave < Formula
     satisfy { MacOS::CLT.installed? }
   end
 
-  depends_on :maximum_macos => [:mojave, :build]
+  depends_on :maximum_macos => [:catalina, :build]
 
   # GCC bootstraps itself, so it is OK to have an incompatible C++ stdlib
   cxxstdlib_check :skip
@@ -67,15 +67,15 @@ class Gcc49mojave < Formula
     end
   end
 
-  # Fix issues with macOS 10.13 headers and parallel build on APFS
-  if MacOS.version == :mojave
+  # Fix issues with macOS 10.13 or higher headers and parallel build on APFS
+  if MacOS.version >= :mojave    
     patch do
       url "https://raw.githubusercontent.com/Homebrew/formula-patches/b7c7883d/gcc%404.9/high_sierra_2.patch"
       sha256 "c7bcad4657292f6939b7322eb5e821c4a110c4f326fd5844890f0e9a85da8cae"
     end
     if DevelopmentTools.clang_build_version >= 1000
       patch do
-        url "https://raw.githubusercontent.com/sofair/gcc49mojave_brew/master/gcc_49_mojave_fix3.patch"
+        url "https://raw.githubusercontent.com/sofair/gcc49mojave_brew/master/gcc_49_os_ge_mojave_fix3.patch"
         sha256 "ab297141f9d4387935c2e3bb7519fac83133efdb6b81216e8764cbe406655a5a"
       end
     end
